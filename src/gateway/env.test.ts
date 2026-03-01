@@ -21,6 +21,12 @@ describe('buildEnvVars', () => {
     expect(result.OPENAI_API_KEY).toBe('sk-openai-key');
   });
 
+  it('includes GEMINI_API_KEY when set directly', () => {
+    const env = createMockEnv({ GEMINI_API_KEY: 'gemini-key' });
+    const result = buildEnvVars(env);
+    expect(result.GEMINI_API_KEY).toBe('gemini-key');
+  });
+
   // Cloudflare AI Gateway (new native provider)
   it('passes Cloudflare AI Gateway env vars', () => {
     const env = createMockEnv({
